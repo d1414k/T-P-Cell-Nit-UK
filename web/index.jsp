@@ -70,7 +70,7 @@
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            
+            <br><br>
             
             
         <div class="modal-header jumbotron" style="position: relative;padding-bottom: 100px;background-color: #17232e;">
