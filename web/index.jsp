@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 24 Sep, 2017, 1:26:13 PM
-    Author     : deepa
+    Author     : deepak
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,31 +20,6 @@
 		<h1>Hello</h1>
 		</div>
 		<table class="table table-striped">
-			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>5</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
 			<tr>
 				<td>1</td>
 				<td>2</td>
