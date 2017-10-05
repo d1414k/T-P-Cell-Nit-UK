@@ -13,3 +13,41 @@
 {
 float : left;	
 }
+.col-xs-6 {
+    width: 50%;
+	float:left;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.modal #user-menu-container #user-menu .user-menu-item {
+    font-size: 16px;
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+}
+.modal #user-menu-container #user-menu .user-menu-item.active {
+    border-bottom: 4px solid #1295C9;
+    padding-bottom: 7px;
+}
+.modal #user-menu-container {
+    text-align: center;
+}
+#register-container #register-container-inner #register-button-positioner button {
+    width: 99px;
+}
+
+ #login-modal .modal-dialog {
+    width: 350px;
+}
+
+#login-modal input[type=text], input[type=password] {
+	margin-top: 10px;
+}
+.in
+{
+border-radius: 5px;text-align: center;'
+}

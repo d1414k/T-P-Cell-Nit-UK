@@ -10,11 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Home - T&P Cell Nit Uk</title>
+        <title>Home - T&P Cell Nit UK</title>
+        <link rel="shortcut icon" href="img/nitlogo.jpg">
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/self.css">
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.js"></script> 
     </head>
     <body>
         <div class="page-container">    
@@ -39,7 +39,7 @@
                             </li>
                             <li style="float : left">
                                 <a href="rules-and-procedures.html" class="btn btn-d btn-sq btn-sm nav-button">Procedures</a>
-                            </li style="float : left">
+                            </li>
                             <li style="float : left">
                                 <a href="downloads.html" class="btn btn-d btn-sq btn-sm nav-button">Downloads</a>
                             </li>
@@ -52,21 +52,19 @@
                         
                         
                 </div>
-                <div class="col-sm-2">
-                    <ul class="list-unstyled list">
-                        <li>
-                                <a href="" class="btn btn-sm">Recruiter Login</a>
-                        </li>
-                    <ul>
-                </div>
-                <div class="col-sm-2">
-                    <ul class="list-unstyled list">
-                        <li>
-                                <a href="" class="btn btn-sm">Student Login</a>
-                        </li>
-                    </ul>
+                <div id="register-container">
+                    <div id="register-container-inner">
+                        <div id="register-button-positioner">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Log In</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='reg.jsp'"> Register</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            
+            
+            
             
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -123,8 +121,71 @@
             </ul>
 	</div>
 
-            
-                  
-       </div>   
+                     
+       </div>
+        
+        
+        
+        
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       <div id="user-menu-container">
+                           <div id="user-menu">
+                               <div class="col-xs-6 user-menu-item active" id="student">Students</div>
+                               <div class="col-xs-6 user-menu-item" id="recruiter">Recruiters</div>
+                           </div>
+                       </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="login">
+                        <form role="form" id="modalLoginFormRec" style=" display : block ;" novalidate="novalidate"> 
+                            <input type="hidden" name="csrf_test_name" value="fa7dbc074b6d49d2eaf6506c73d74104">
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email:
+                                </label>
+                                <input type="email" class="form-control input-lg" id="email" tabindex="1" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">Password:</label> 
+                                <a href="/login/forgot_password" id="forgot-password">Forgot Password</a> 
+                                <input type="password" class="form-control input-lg" id="password" tabindex="2" name="password">
+                            </div>
+                        </form>
+                        <form role="form" id="modalLoginFormStu" style=" display : block ;" novalidate="novalidate"> 
+                            <input type="hidden" name="csrf_test_name" value="fa7dbc074b6d49d2eaf6506c73d74104">
+                            <div class="form-group">
+                                <label for="rollno" class="control-label">Rollno:
+                                </label>
+                                <input type="text" class="form-control input-lg" id="rollno" tabindex="1" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">Password:</label> 
+                                <a href="/login/forgot_password" id="forgot-password">Forgot Password</a> 
+                                <input type="password" class="form-control input-lg" id="password" tabindex="2" name="password">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer table-row">
+                        <div class="table-cell">
+                            <p>Don't have an account? Register (<a href="/registration/student">Student</a> / 
+                                <a href="/registration/employer">Recruiter</a>)</p>
+                        </div>
+                        <div class="table-cell">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LoginModal">Login
+                            </button>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/self.js"></script>
+        
     </body>
 </html>
