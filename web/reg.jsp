@@ -11,13 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Registration</title>
+        <link rel="shortcut icon" href="img/nitlogo.jpg">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/self.css">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.js"></script> 
     </head>
-    <body>
+    <body >
         <form action="confirm.jsp" class="form-control" method="post">
             <table align="center" class="table">
                 <tr align="center">
@@ -43,7 +44,7 @@
                     </td>
                     <td>
                         <!--<input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" pattern="(BT/MT/bt/mt)+[0-9]+[0-9]+(cse/civ/mec/eee/ece/CSE/CIV/MEC/EEE/ECE)+[0-9]+[0-9]+[0-9]" maxlength="10" style='border-radius: 5px;text-align: center;'> -->
-                        <input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" class="in">
+                        <input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" class="in" required="true">
                     </td>
                 </tr>
                 <tr>
@@ -177,7 +178,6 @@
                         <th rowspan='2'>Board/Institution</th>
                         <th rowspan='2'>Passing Year</th>
                         <th colspan='3'style='text-align: center;'>Marks</th>
-                        <th rowspan='2'>No. of Attempts</th>
                     </tr>
                     <tr>
                         <th>Obtained</th>
@@ -193,8 +193,8 @@
                             maxlength = "4" style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='obtain10' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='total10' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='percent10' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='attempts10' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='percent10' style='border-radius: 5px;text-align: center;'></td>
+                        
                     </tr>
                     <tr>
                         <td>12th</td>
@@ -205,8 +205,8 @@
                             maxlength = "4" style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='obtain12' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='total12' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='percent12' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='attrmpts12' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='percent12' style='border-radius: 5px;text-align: center;'></td>
+                        
                     </tr>
                 </table>
                 </tr>
@@ -229,52 +229,52 @@
                         <td><input type='number' name='regcredit1' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='earnedcredit1' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='totalcredit1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='spi1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='cpi1' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number'step="any" name='spi1' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='cpi1' style='border-radius: 5px;text-align: center;'></td>
                     </tr>
                     <tr>
                         <td>2st Sem</td>
                         <td><input type='number' name='regcredit2' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='earnedcredit2' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='totalcredit2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='spi2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='cpi2' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='spi2' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='cpi2' style='border-radius: 5px;text-align: center;'></td>
                     </tr>
                     <tr>
                         <td>3st Sem</td>
                         <td><input type='number' name='regcredit3' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='earnedcredit3' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='totalcredit3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='spi3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='cpi3' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='spi3' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='cpi3' style='border-radius: 5px;text-align: center;'></td>
                     </tr>
                     <tr>
                         <td>4st Sem</td>
                         <td><input type='number' name='regcredit4' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='earnedcredit4' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='totalcredit4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='spi4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='cpi4' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='spi4' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='cpi4' style='border-radius: 5px;text-align: center;'></td>
                     </tr>
                     <tr>
                         <td>5st Sem</td>
                         <td><input type='number' name='regcredit5' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='earnedcredit5' style='border-radius: 5px;text-align: center;'></td>
                         <td><input type='number' name='totalcredit5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='spi5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='cpi5' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='spi5' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='number' step="any" name='cpi5' style='border-radius: 5px;text-align: center;'></td>
                     </tr>
                     <tr>
                         <td>6st Sem</td>
                         <td><input type='number' name='regcredit6' class='in'></td>
                         <td><input type='number' name='earnedcredit6' class='in'></td>
                         <td><input type='number' name='totalcredit6' class='in'></td>
-                        <td><input type='number' name='spi6' class='in'></td>
-                        <td><input type='number' name='cpi6' class='in'></td>
+                        <td><input type='number' step="any" name='spi6' class='in'></td>
+                        <td><input type='number' step="any" name='cpi6' class='in'></td>
                     </tr>
                     <tr>
                         <th colspan='5'>Total</th>
-                        <td><input type='number' name='total' class='in'><td>
+                        <td><input type='number' step="any"  name='total' class='in'><td>
                     </tr>
                 </table>
             <table class='table'>

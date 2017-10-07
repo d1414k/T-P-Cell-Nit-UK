@@ -31,11 +31,9 @@
   int  obtain10 = Integer.parseInt(request.getParameter("obtain10"));
   int obtain12 = Integer.parseInt(request.getParameter("obtain12"));
   int total10 = Integer.parseInt(request.getParameter("total10"));
-  int total12 = Integer.parseInt(request.getParameter("total2"));
+  int total12 = Integer.parseInt(request.getParameter("total12"));
   double percent10 = Double.parseDouble(request.getParameter("percent10"));
   double percent12 = Double.parseDouble(request.getParameter("percent12"));
-  int attempts10 = Integer.parseInt(request.getParameter("attempts10"));
-  int attempts12 = Integer.parseInt(request.getParameter("attempts12"));
   
   int regcredit1 = Integer.parseInt(request.getParameter("regcredit1"));
   int regcredit2 = Integer.parseInt(request.getParameter("regcredit2"));
@@ -55,20 +53,20 @@
   int totalcredit4 = Integer.parseInt(request.getParameter("totalcredit4"));
   int totalcredit5 = Integer.parseInt(request.getParameter("totalcredit5"));
   int totalcredit6 = Integer.parseInt(request.getParameter("totalcredit6"));
-  int spi1 = Integer.parseInt(request.getParameter("spi1"));
-  int spi2 = Integer.parseInt(request.getParameter("spi2"));
-  int spi3 = Integer.parseInt(request.getParameter("spi3"));
-  int spi4 = Integer.parseInt(request.getParameter("spi4"));
-  int spi5 = Integer.parseInt(request.getParameter("spi5"));
-  int spi6 = Integer.parseInt(request.getParameter("spi6"));
-  int cpi1 = Integer.parseInt(request.getParameter("cpi1"));
-  int cpi2 = Integer.parseInt(request.getParameter("cpi2"));
-  int cpi3 = Integer.parseInt(request.getParameter("cpi3"));
-  int cpi4 = Integer.parseInt(request.getParameter("cpi4"));
-  int cpi5 = Integer.parseInt(request.getParameter("cpi5"));
-  int cpi6 = Integer.parseInt(request.getParameter("cpi6"));
-  int total = Integer.parseInt(request.getParameter("total"));
-  
+  double spi1 = Double.parseDouble(request.getParameter("spi1"));
+  double spi2 = Double.parseDouble(request.getParameter("spi2"));
+  double spi3 = Double.parseDouble(request.getParameter("spi3"));
+  double spi4 = Double.parseDouble(request.getParameter("spi4"));
+  double spi5 = Double.parseDouble(request.getParameter("spi5"));
+  double spi6 = Double.parseDouble(request.getParameter("spi6"));
+  double cpi1 = Double.parseDouble(request.getParameter("cpi1"));
+  double cpi2 = Double.parseDouble(request.getParameter("cpi2"));
+  double cpi3 = Double.parseDouble(request.getParameter("cpi3"));
+  double cpi4 = Double.parseDouble(request.getParameter("cpi4"));
+  double cpi5 = Double.parseDouble(request.getParameter("cpi5"));
+  double cpi6 = Double.parseDouble(request.getParameter("cpi6"));
+  double total = Double.parseDouble(request.getParameter("total"));
+ 
   String minor = request.getParameter("minor");
   String  minor_guide= request.getParameter("minor_guide");
   String major = request.getParameter("major");
@@ -83,6 +81,7 @@
   String end1 = request.getParameter("end1");
   String end2 = request.getParameter("end2");
   String end3 = request.getParameter("end3");
+  int x=-1,y=-1,z=-1,w=-1,u=-1;
   try
   {
     Class.forName("com.mysql.jdbc.Driver");
@@ -93,7 +92,6 @@
     ResultSet rs = stmt.executeQuery();
     if(rs.next())
     {
-        //out.println("Already Registered....");
         %>
 <script>
     alert("You are Already Registered ....");
@@ -124,8 +122,8 @@
         st.setString(13,mob1);
         st.setString(14,mob2);
         st.setString(15,account);
-        st.executeUpdate();
-        String sql1 = "insert into bschool values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        x = st.executeUpdate();
+        String sql1 = "insert into bschool values(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st1 = con.prepareStatement(sql1);
         st1.setString(1,roll);
         st1.setString(2,board10);
@@ -138,44 +136,42 @@
         st1.setInt(9,total12);
         st1.setDouble(10,percent10);
         st1.setDouble(11,percent12);
-        st1.setInt(12,attempts10);
-        st1.setInt(13,attempts12);
-        st1.executeUpdate();
+        y = st1.executeUpdate();
         String sql2 = "insert into bgraduate values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st2 = con.prepareStatement(sql2);
         st2.setString(1,roll);
         st2.setInt(2,regcredit1);
         st2.setInt(3,earnedcredit1);
         st2.setInt(4,totalcredit1);
-        st2.setInt(5,spi1);
-        st2.setInt(6,cpi1);
+        st2.setDouble(5,spi1);
+        st2.setDouble(6,cpi1);
         st2.setInt(7,regcredit2);
         st2.setInt(8,earnedcredit2);
         st2.setInt(9,totalcredit2);
-        st2.setInt(10,spi2);
-        st2.setInt(11,cpi2);
+        st2.setDouble(10,spi2);
+        st2.setDouble(11,cpi2);
         st2.setInt(12,regcredit3);
         st2.setInt(13,earnedcredit3);
         st2.setInt(14,totalcredit3);
-        st2.setInt(15,spi3);
-        st2.setInt(16,cpi3);
+        st2.setDouble(15,spi3);
+        st2.setDouble(16,cpi3);
         st2.setInt(17,regcredit4);
         st2.setInt(18,earnedcredit4);
         st2.setInt(19,totalcredit4);
-        st2.setInt(20,spi4);
-        st2.setInt(21,cpi4);
+        st2.setDouble(20,spi4);
+        st2.setDouble(21,cpi4);
         st2.setInt(22,regcredit5);
         st2.setInt(23,earnedcredit5);
         st2.setInt(24,totalcredit5);
-        st2.setInt(25,spi5);
-        st2.setInt(26,cpi5);
+        st2.setDouble(25,spi5);
+        st2.setDouble(26,cpi5);
         st2.setInt(27,regcredit6);
         st2.setInt(28,earnedcredit6);
         st2.setInt(29,totalcredit6);
-        st2.setInt(30,spi6);
-        st2.setInt(31,cpi6);
-        st2.setInt(32,total);
-        st2.executeUpdate();
+        st2.setDouble(30,spi6);
+        st2.setDouble(31,cpi6);
+        st2.setDouble(32,total);
+        z = st2.executeUpdate();
         String sql3 = "insert into bproject values(?,?,?,?,?)";
         PreparedStatement st3 = con.prepareStatement(sql3);
         st3.setString(1, roll);
@@ -183,7 +179,7 @@
         st3.setString(3, minor_guide);
         st3.setString(4, major);
         st3.setString(5, major_guide);
-        st3.executeUpdate();
+        w = st3.executeUpdate();
         String sql4 = "insert into btraining values(?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st4 = con.prepareStatement(sql4);
         st4.setString(1,roll);
@@ -196,8 +192,15 @@
         st4.setString(8,company3);
         st4.setString(9,start3);
         st4.setString(10,end3);
-        st4.executeUpdate();
+        u = st4.executeUpdate();
     }
+    if(x>0&&y>0&&z>0&&w>0&&u>0)
+    {%>
+    <script>
+    alert("Thanks for Registration");
+    </script>
+    
+    <%}
     con.close();
   }
   catch(Exception e)
@@ -220,11 +223,15 @@
         <script src="js/self.js"></script>
     </head>
     <body>
-        <form action="confirmPass.jsp" method="post">
+       <body>
+           <form action="passconfirm.jsp" method="post">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 align="center">Create a password</h3>
+                    </div>
+                    <div>
+                        <input type="hidden" name="roll" value=<%=roll%>>
                     </div>
                 </div>
                 <div class="row">
@@ -232,7 +239,7 @@
                         Enter Password
                     </div>
                     <div class="col-md-6">
-                        <input type="password" id="pass1" name="pass1" class="in">
+                        <input type="password" id="pass1" name="pass1" class="in" required="true">
                     </div>
                 </div>
                 <div class="row">
@@ -240,7 +247,8 @@
                         Confirm Password
                     </div>
                     <div class="col-md-6">
-                        <input type="password" id="pass1" name="pass2" class="in">
+                        <input type="password" id="pass2" name="pass2" class="in" required="true">
+                        <span id='message'></span>
                     </div>
                 </div>
                 <br><br>
@@ -250,5 +258,13 @@
                 </div>
             </div>
         </form>
+       <script>
+            $('#pass1, #pass2').on('keyup', function () {
+                if ($('#pass1').val() == $('#pass2').val()) {
+                  $('#message').html('Matching').css('color', 'green');
+                } else 
+                  $('#message').html('Not Matching').css('color', 'red');
+                });
+        </script>
     </body>
 </html>

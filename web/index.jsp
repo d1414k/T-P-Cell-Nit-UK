@@ -17,6 +17,29 @@
         <link rel="stylesheet" href="css/self.css">
     </head>
     <body>
+       <!-- <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div id="menu">
+                        <ul class="nav navbar-nav">
+                            <li><a href="">Why NIT Uk</a></li>
+                            <li><a href="">Departments</a></li>
+                            <li><a href="">Procedures</a></li>
+                            <li><a href="">Downloads</a></li>
+                            <li><a href="">Abount Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header> -->
         <div class="page-container">    
             <div class="row jumbotron">
                 <div class="col-sm-8">
@@ -133,8 +156,8 @@
                     <div class="modal-header">
                        <div id="user-menu-container">
                            <div id="user-menu">
-                               <div class="col-xs-6 user-menu-item active" id="student">Students</div>
-                               <div class="col-xs-6 user-menu-item" id="recruiter">Recruiters</div>
+                               <div class="col-xs-6 user-menu-item" id="stu" style="color: #FF33B5;">Students</div>
+                               <div class="col-xs-6 user-menu-item" id="rec">Recruiters</div>
                            </div>
                        </div>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -142,43 +165,52 @@
                       </button>
                     </div>
                     <div class="modal-body" id="login">
-                        <form role="form" id="modalLoginFormRec" style=" display : block ;" novalidate="novalidate"> 
-                            <input type="hidden" name="csrf_test_name" value="fa7dbc074b6d49d2eaf6506c73d74104">
+                        <form action="" role="form" id="modalLoginFormRec" style=" display : none ;" novalidate="novalidate"> 
                             <div class="form-group">
-                                <label for="email" class="control-label">Email:
+                                <label for="email" class="control-label">Email or Username:
                                 </label>
                                 <input type="email" class="form-control input-lg" id="email" tabindex="1" name="email">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="control-label">Password:</label> 
-                                <a href="/login/forgot_password" id="forgot-password">Forgot Password</a> 
+                                <label for="password" class="control-label">Password :</label> 
                                 <input type="password" class="form-control input-lg" id="password" tabindex="2" name="password">
+                                <a href=""><h6 style="text-align: right;">Forgot Password</h6></a> 
                             </div>
+                            <div class="modal-footer table-row">
+                                <div class="table-cell">
+                                    <p>Don't have an account? Register (<a href="reg.jsp">Student</a> / 
+                                        <a href="">Recruiter</a>)</p>
+                                </div>
+                                <div class="table-cell">
+                                    <button type="submit" class="btn btn-primary">Login
+                                    </button>
+                                </div>
+                            </div> 
                         </form>
-                        <form role="form" id="modalLoginFormStu" style=" display : block ;" novalidate="novalidate"> 
-                            <input type="hidden" name="csrf_test_name" value="fa7dbc074b6d49d2eaf6506c73d74104">
+                        <form action="Login" method="post" role="form" id="modalLoginFormStu" style=" display : block ;" novalidate="novalidate">
                             <div class="form-group">
-                                <label for="rollno" class="control-label">Rollno:
+                                <label for="rollno" class="control-label">Roll No :
                                 </label>
-                                <input type="text" class="form-control input-lg" id="rollno" tabindex="1" name="email">
+                                <input type="text" class="form-control input-lg" id="rollno" tabindex="1" name="roll">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="control-label">Password:</label> 
-                                <a href="/login/forgot_password" id="forgot-password">Forgot Password</a> 
-                                <input type="password" class="form-control input-lg" id="password" tabindex="2" name="password">
+                                <label for="password" class="control-label">Password :</label>
+                                <input type="password" class="form-control input-lg" id="password" tabindex="2" name="pass">
+                                <a href=""><h6 style="text-align: right;">Forgot Password</h6></a> 
                             </div>
+                            <div class="modal-footer table-row">
+                                <div class="table-cell">
+                                    <p>Don't have an account? Register (<a href="reg.jsp">Student</a> / 
+                                        <a href="">Recruiter</a>)</p>
+                                </div>
+                                <div class="table-cell">
+                                    <button type="submit" class="btn btn-primary">Login
+                                    </button>
+                                </div>
+                            </div> 
                         </form>
                     </div>
-                    <div class="modal-footer table-row">
-                        <div class="table-cell">
-                            <p>Don't have an account? Register (<a href="/registration/student">Student</a> / 
-                                <a href="/registration/employer">Recruiter</a>)</p>
-                        </div>
-                        <div class="table-cell">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LoginModal">Login
-                            </button>
-                        </div>
-                    </div>  
+   
                 </div>
             </div>
         </div>
