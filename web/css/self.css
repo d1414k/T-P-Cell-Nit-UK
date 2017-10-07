@@ -1,8 +1,6 @@
 .head-logo {
-    float: left;
-    margin-right: 12px;
-	margin-left : 50px;
 	margin-top : 0;
+	padding-left:2px;
 }
 .list
 {

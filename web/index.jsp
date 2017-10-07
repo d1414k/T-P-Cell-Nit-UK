@@ -17,77 +17,44 @@
         <link rel="stylesheet" href="css/self.css">
     </head>
     <body>
-       <!-- <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div id="menu">
-                        <ul class="nav navbar-nav">
-                            <li><a href="">Why NIT Uk</a></li>
-                            <li><a href="">Departments</a></li>
-                            <li><a href="">Procedures</a></li>
-                            <li><a href="">Downloads</a></li>
-                            <li><a href="">Abount Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header> -->
-        <div class="page-container">    
-            <div class="row jumbotron">
-                <div class="col-sm-8">
-                    <a href="index.jsp"><img src="img/nitlogo.jpg" class="head-logo" height="100%" width="18%"/></a>  
-                       <h4>
-                                <a class="ltc-black" href="index.jsp">Training &amp; Placement Cell</a><br>
-                        </h4>
-                        <h6>
-                                 <a class="pull-left" href="" target="_blank">National Institute Of Technology Uttarakhand</a><br>
-                        </h6>
-                        
-                    <br>    
-                    <div>    
-                        <ul class="list-unstyled" >
-                            <li style="float : left;">
-                                <a href="#" class="btn btn-d btn-sq btn-sm nav-button ">Why NIT UK<span class="caret"></span></a>
-                            </li>
-                            <li style="float : left">
-                                <a href="departments-and-disciplines.html" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
-                            </li>
-                            <li style="float : left">
-                                <a href="rules-and-procedures.html" class="btn btn-d btn-sq btn-sm nav-button">Procedures</a>
-                            </li>
-                            <li style="float : left">
-                                <a href="downloads.html" class="btn btn-d btn-sq btn-sm nav-button">Downloads</a>
-                            </li>
-                            <li style="float : left">
-                                <a href="#" class="btn btn-d btn-sq btn-sm nav-button">About Us<span class="caret"></span></a> 
-                            </li>    
-                        </ul>
-                        
-                     </div>   
-                        
-                        
-                </div>
-                <div id="register-container">
-                    <div id="register-container-inner">
-                        <div id="register-button-positioner">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Log In</button>
-                            <button type="button" class="btn btn-primary" onclick="location.href='reg.jsp'"> Register</button>
+       <header>
+            <nav class="navbar fixed-top navbar-light navbar-toggleable-sm bg-faded" role="navigation">
+                    <div class='row'>
+                        <div class='col-sm-2'>
+                        <a href="index.jsp"><img src="img/nitlogo.jpg" class="head-logo" height="90%" width="90%"/></a> 
                         </div>
+                        <div class='col-sm-8'><br>
+                        <h4>
+                            <a href="index.jsp">Training &amp; Placement Cell</a><br>
+                        </h4><br>
+                        <h6>
+                            <a class="pull-left" href="" target="_blank">National Institute Of Technology Uttarakhand</a><br>
+                        </h6>
+                        </div>
+                        <div class='col-sm-2'>
+                            <form class="form-inline my-2 my-lg-2" style="text-align:'right'">
+                            <button type="button" class="btn btn-primary form-control mr-sm-1" data-toggle="modal" data-target="#myModal"> Log In</button>
+                            <button type="button" class="btn btn-primary btn-outline-success form-control mr-sm-1 my-2 my-sm-12" onclick="location.href='reg.jsp'"> Register</button>
+                            </form>
+                        </div>
+                    <div class="navbar-header">
+                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </div>
-                </div>
-            </div>
-            
-            
-            
-            
+                    <div id="menu" class="collapse navbar-collapse navbar-toggleable">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" href="">Why Nit Uk</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Departments</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Procedures</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Downloads</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Abount Us</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>       
+            </nav>
+        </header>
+        
             
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
