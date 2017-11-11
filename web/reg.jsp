@@ -16,14 +16,110 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/self.css">
         <script src="js/jquery.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script> 
+        <script src="js/self.js"></script> 
+        <script type="text/javascript">
+    $(document).ready(function () {
+    var counter = 2;
+    var counter1 = 2;
+    var counter2 = 2;
+    $("#addrow").on("click", function () {
+        if(counter <= 8){
+        var newRow = $("<tr>");
+        var cols = "";
+
+        cols += '<td>'+counter+'.</td>';
+        cols += ' <td><input type="number" name="regcredit' + counter + '" class="in"></td>';
+        cols += '<td><input type="number" name="earnedcredit' + counter + '" class="in"></td>';
+        cols += '<td><input type="number" name="totalcredit' + counter + '" class="in"></td>';
+        cols += '<td><input type="number" step="any" name="spi' + counter + '" class="in"> </td>';
+        cols += '<td><input type="number" step="any" name="cpi1' + counter + '" class="in"></td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.order-list").append(newRow);
+        counter++;
+    }
+    });
+    $("table.order-list").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1;
+    });
+    //for project
+    $("#addrow1").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+               cols += '<td>';
+               cols +=  '<select name="type' + counter1 + '">';
+               cols +=   '<option value="-1">--Select--</option>';
+               cols +=    '<option value="minor">Minor</option>';
+               cols +=     '<option value="major">Major</option>';
+               cols +=     '<option value="others">Others</option>';
+               cols +=    '</select>';
+               cols +=     '</td>';
+               cols +=  '<td><input type="text" name = "title' + counter1 + '" class="in" style="width: 100%"></td>';
+               cols +=  '<td><input type="text" name = "guide' + counter1 + '" class="in" style="width: 100%"></td>';
+               cols +=   '<td>';
+               cols +=   '<select name="grade' + counter1 + '">';
+               cols +=   '<option value="-1">--Select--</option>';
+               cols +=  '<option value="s">Satisfactory</option>';
+               cols +=   '<option value="u">Unsatisfactory</option>';
+               cols +=   '</select>';
+               cols +=   '</td>';
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.order-list1").append(newRow);
+        counter1++;
+    });
+
+    $("table.order-list1").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter1 -= 1;
+    });
+    //for training
+    $("#addrow2").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+               cols += '<td>' + counter2 + '.</td>';
+               cols += '<td><input type="text" name="company' + counter2 + '" class="in"></td>';
+               cols +=  '<td><input type="date" name="start1' + counter2 + '" class="in"></td>';
+               cols +=  '<td><input type="date" name="end1' + counter2 + '" class="in"></td>';
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.order-list2").append(newRow);
+        counter2++;
+    });
+
+    $("table.order-list2").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter2 -= 1;
+    });
+
+});
+
+
+
+function calculateRow(row) {
+    var price = +row.find('input[name^="price"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.order-list").find('input[name^="price"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
+</script>
     </head>
-    <body >
+    <body>
         <form action="confirm.jsp" class="form-control" method="post">
             <table align="center" class="table">
                 <tr align="center">
                    <td><b><u>TPC Registration Form</u></b></td> 
-                </tr>
+                </tr
                 <tr align="center">
                    <td>(For the record of Training & Placement Cell)</td> 
                 </tr>
@@ -35,10 +131,11 @@
                        <select name="degree" style='border-radius: 5px;text-align: center;'>
                            <option value="b">B.Tech</option>
                            <option value="m">M.Tech</option>
+                           <option value="p">Ph.D</option>
                        </select>
                    </td>
-                </tr>
-                <tr>
+               
+                
                     <td>
                         Roll No
                     </td>
@@ -174,15 +271,12 @@
                 <tr>
                 <table class='table'>
                     <tr>
-                        <th rowspan='2'>Examination</th>
-                        <th rowspan='2'>Board/Institution</th>
-                        <th rowspan='2'>Passing Year</th>
-                        <th colspan='3'style='text-align: center;'>Marks</th>
-                    </tr>
-                    <tr>
-                        <th>Obtained</th>
+                        <th>Examination</th>
+                        <th>Board/Institution</th>
+                        <th>Passing Year</th>
+                        <th>Marks Obtained</th>
                         <th>Out of(Total)</th>
-                        <th>%age</th>
+                        <th>Percentage/CGPA</th>
                     </tr>
                     <tr>
                         <td>10th</td>
@@ -210,98 +304,87 @@
                     </tr>
                 </table>
                 </tr>
-                <table class='table'>
-                    <tr><td><b>Under Graduation</b></td></tr><br><br>
-                    <tr>
-                        <th rowspan='2'>Examination</th>
-                        <th rowspan='2'>Credit Reg.</th>
-                        <th rowspan='2'>Credit earned</th>
-                        <th rowspan='2'>Total Credit Earned</th>
-                        <th colspan='2' style='text-align: center;'>Grade</th>
-                    </tr>
-                    <tr>
-                       
-                        <th>SPI</th>
-                        <th>CPI</th>
-                    </tr>
-                    <tr>
-                        <td>1st Sem</td>
-                        <td><input type='number' name='regcredit1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='earnedcredit1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='totalcredit1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number'step="any" name='spi1' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='cpi1' style='border-radius: 5px;text-align: center;'></td>
-                    </tr>
-                    <tr>
-                        <td>2st Sem</td>
-                        <td><input type='number' name='regcredit2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='earnedcredit2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='totalcredit2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='spi2' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='cpi2' style='border-radius: 5px;text-align: center;'></td>
-                    </tr>
-                    <tr>
-                        <td>3st Sem</td>
-                        <td><input type='number' name='regcredit3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='earnedcredit3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='totalcredit3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='spi3' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='cpi3' style='border-radius: 5px;text-align: center;'></td>
-                    </tr>
-                    <tr>
-                        <td>4st Sem</td>
-                        <td><input type='number' name='regcredit4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='earnedcredit4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='totalcredit4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='spi4' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='cpi4' style='border-radius: 5px;text-align: center;'></td>
-                    </tr>
-                    <tr>
-                        <td>5st Sem</td>
-                        <td><input type='number' name='regcredit5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='earnedcredit5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='totalcredit5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='spi5' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='cpi5' style='border-radius: 5px;text-align: center;'></td>
-                    </tr>
-                    <tr>
-                        <td>6st Sem</td>
-                        <td><input type='number' name='regcredit6' class='in'></td>
-                        <td><input type='number' name='earnedcredit6' class='in'></td>
-                        <td><input type='number' name='totalcredit6' class='in'></td>
-                        <td><input type='number' step="any" name='spi6' class='in'></td>
-                        <td><input type='number' step="any" name='cpi6' class='in'></td>
-                    </tr>
+                <b>Under Graduation</b>
+               <table id="myTable" class=" table order-list">
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th >Credit Reg.</th>
+                            <th >Credit earned</th>
+                            <th >Total Credit Earned</th>
+                            <th>SPI</th>
+                            <th>CPI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td><input type='number' name='regcredit1' style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' name='earnedcredit1' style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' name='totalcredit1' style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number'step="any" name='spi1' style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' step="any" name='cpi1' style='border-radius: 5px;text-align: center;'></td>
+                            <td class="col-sm-2"><a class="deleteRow"></a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" style="text-align: right;">
+                                <input type="button" class="btn btn-primary " id="addrow" value="Add Semester" />
+                            </td>
+                        </tr>
+                    </tfoot> 
+                <!--<table>
                     <tr>
                         <th colspan='5'>Total</th>
                         <td><input type='number' step="any"  name='total' class='in'><td>
                     </tr>
-                </table>
-            <table class='table'>
+                </table>-->
+            <table <table id="myTable" class=" table order-list1">
+                <tr><td><b>Projects</b></td></tr>
                 <tr>
-                    <td>Title of Minor Project</td>
-                    <td><input type="text" name="minor" class="in" style="width: 100%"></td>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Name of Guide</th>
+                    <th>Grade</th>
                 </tr>
                 <tr>
-                    <td>Name of Guide</td>
-                    <td><input type="text" name="minor_guide" class="in" style="width: 100%"></td>
+                    <td>
+                        <select name="type1">
+                            <option value="-1">--Select--</option>
+                            <option value="minor">Minor</option>
+                            <option value="major">Major</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name = "title1" class="in" style="width: 100%"></td>
+                    <td><input type="text" name = "guide1" class="in" style="width: 100%"></td>
+                    <td>
+                        <select name='grade1'>
+                            <option value="-1">--Select--</option>
+                            <option value="s">Satisfactory</option>
+                            <option value="u">Unsatisfactory</option>
+                        </select>
+                    </td>
+                    <td><a class="deleteRow"></a></td>
                 </tr>
-                <tr>
-                    <td>Title of Major Project</td>
-                    <td><input type="text" name="major" class="in" style="width: 100%"></td>
-                </tr>
-                <tr>
-                    <td>Name of Guide</td>
-                    <td><input type="text" name="major_guide" class="in" style="width: 100%"></td>
-                </tr>
+                <tfoot>
+                        <tr>
+                            <td colspan="12" style="text-align: right;">
+                                <input type="button" class="btn btn-primary " id="addrow1" value="Add Project" />
+                            </td>
+                        </tr>
+                </tfoot> 
+            </table>
+            <table class="table order-list2">
                 <tr>
                     <td><b><u>PRACTICAL TRAINING</u></b></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>Have you under gone practical training</td>
                     <td><input type="radio" name="practical" value="yes" checked="true">Yes</td>
                     <td><input type="radio" name="practical" value="no">No</td>
-                </tr>
+                </tr>-->
                 <tr>
                     <th>Sr. No</th>
                     <th>Name of Company</th>
@@ -312,19 +395,17 @@
                     <td><input type="text" name="company1" class="in"></td>
                     <td><input type="date" name="start1" class="in"></td>
                     <td><input type="date" name="end1" class="in"></td>
+                    <td><a class="deleteRow"></a></td>
                 </tr>
-                <tr>
-                    <td>2.</td>
-                    <td><input type="text" name="company2" class="in"></td>
-                    <td><input type="date" name="start2" class="in"></td>
-                    <td><input type="date" name="end2" class="in"></td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td><input type="text" name="company3" class="in"></td>
-                    <td><input type="date" name="start3" class="in"></td>
-                    <td><input type="date" name="end3" class="in"></td>
-                </tr>
+                <tfoot>
+                        <tr>
+                            <td colspan="12" style="text-align: right;">
+                                <input type="button" class="btn btn-primary " id="addrow2" value="Add Training" />
+                            </td>
+                        </tr>
+                </tfoot> 
+                </table>
+                <table class='table order-list3'>
                 <tr>
                     <td><b><u>EXTRA-CURRICULAR ACTIVITY</u></b></td>
                 </tr>
@@ -396,5 +477,6 @@
             </div>
         </div>
         </form>
+        
     </body>
 </html>
