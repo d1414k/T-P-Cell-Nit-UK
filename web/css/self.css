@@ -47,5 +47,10 @@ float : left;
 }
 .in
 {
-border-radius: 5px;text-align: center;'
+border-radius: 5px;text-align: center;
+}
+
+.box-content
+{
+    border: 1px #000 solid; border-radius: 0.5rem; padding: 1rem;
 }

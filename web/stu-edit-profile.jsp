@@ -1,4 +1,3 @@
-
 <%-- 
     Document   : student
     Created on : 7 Oct, 2017, 12:58:07 PM
@@ -39,6 +38,8 @@ else
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="student.jsp"><%=session.getAttribute("roll")%></a>
+    
+    
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -125,13 +126,14 @@ else
     <div class="container-fluid">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="student.jsp">Student Dashboard</a>
+          <a href="index.html">Student Dashboard</a>
         </li>
+        <li class="breadcrumb-item active">Blank Page</li>
       </ol>
       <div class="row">
         <div class="col-12">
             <div class="jumbotron">
-                <h1 style="margin: 0rem;">Deepak</h1>
+                <h1 style="margin: 0rem;">Rajat</h1>
                 <p style="margin: 0rem;">B.Tech Computer Science & Engineering</p>
                 <p style="margin: 0rem;">Email: guptaprakhar272@gmail.com</p>
                 <p style="margin: 0rem;">Phone no: 941059279</p>
@@ -151,7 +153,9 @@ else
           </div>
       </div>
     </div>
-    <% }
+                
+                <% 
+    }
     
     %>
     <!-- /.container-fluid-->
@@ -159,7 +163,7 @@ else
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © NIT UK</small>
+          <small>Copyright © Your Website 2017</small>
         </div>
       </div>
     </footer>

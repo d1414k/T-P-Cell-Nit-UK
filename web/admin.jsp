@@ -1,7 +1,6 @@
-
 <%-- 
-    Document   : student
-    Created on : 7 Oct, 2017, 12:58:07 PM
+    Document   : admin
+    Created on : 1 Nov, 2017, 4:06:15 PM
     Author     : deepak
 --%>
 
@@ -10,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-if(session.getAttribute("roll")==null)
+if(session.getAttribute("uname")==null)
 {
     response.sendRedirect("index.jsp");
 }
@@ -24,7 +23,7 @@ else
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Student Dashboard</title>
+  <title>Admin Dashboard</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -38,7 +37,9 @@ else
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="student.jsp"><%=session.getAttribute("roll")%></a>
+    <a class="navbar-brand" href="student.jsp"><%=session.getAttribute("uname")%></a>
+    
+    
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -52,21 +53,27 @@ else
           </a>
            </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="student.jsp">
+          <a class="nav-link" href="admin.jsp">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit Profile">
-          <a class="nav-link" href="stu-edit-profile.jsp">
+          <a class="nav-link" href="admin.jsp">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Edit Profile</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" >
-          <a class="nav-link" href="stu-update-pass.jsp">
+          <a class="nav-link" href="admin-update-pass.jsp">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Update Password</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+          <a class="nav-link" href="rec-form.jsp">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">Add Recruiter</span>
           </a>
         </li>
       </ul>
@@ -122,18 +129,44 @@ else
     </div>
   </nav>
   <div class="content-wrapper">
-    <div class="container-fluid">
+      
+      <%
+          String uname = session.getAttribute("uname").toString();
+          String name="",email="";
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp","root","");
+                String str = "select * from admin where uname = ?";
+                PreparedStatement stmt = con.prepareStatement(str);
+                stmt.setString(1,uname);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.next())
+                {
+			name = rs.getString(2);
+                        email = rs.getString(5); 
+                }
+                con.close();
+            }
+            catch(Exception e)
+            {
+                out.println(e);
+            }
+      
+      %>
+     <div class="container-fluid">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="student.jsp">Student Dashboard</a>
+            <a href="admin.jsp">Admin Dashboard</a>
         </li>
       </ol>
       <div class="row">
         <div class="col-12">
             <div class="jumbotron">
-                <h1 style="margin: 0rem;">Deepak</h1>
-                <p style="margin: 0rem;">B.Tech Computer Science & Engineering</p>
-                <p style="margin: 0rem;">Email: guptaprakhar272@gmail.com</p>
+                <h1 style="margin: 0rem;"><%=name%></h1>
+                <p style="margin: 0rem;">Assistant Professor</p>
+                <p style="margin: 0rem;">Department of Computer Science & Engineering</p>
+                <p style="margin: 0rem;">Email: <%=email%></p>
                 <p style="margin: 0rem;">Phone no: 941059279</p>
             </div>
         </div>
@@ -141,18 +174,21 @@ else
       <div class="row">
           <div class="col-6">
               <div class="box-content">
-                  <h3>Educational</h3>
+                  <h3>Educational Qualification</h3>
+                  PhD (Pursuing (IIT-ISM, Dhanbad)), M.Tech. (MNNIT Allahabad), BE(JEC Jabalpur)
               </div>
           </div>
           <div class="col-6">
               <div style="border: 1px #000 solid; border-radius: 0.5rem; padding: 1rem;">
-                  <h3>Training and Internships</h3>
+                  <h3>Research Interests</h3>
+                  Secure Real Time System, Network Security, Vehicular Ad-hoc network.
               </div>
           </div>
       </div>
     </div>
-    <% }
-    
+      
+    <% 
+    }
     %>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
