@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
-<%  
+<%
   String degree = request.getParameter("degree");
   String roll = request.getParameter("roll");
   String fname = request.getParameter("fname");
@@ -65,7 +65,7 @@
   double cpi4 = Double.parseDouble(request.getParameter("cpi4"));
   double cpi5 = Double.parseDouble(request.getParameter("cpi5"));
   double cpi6 = Double.parseDouble(request.getParameter("cpi6"));
-  double total = Double.parseDouble(request.getParameter("total"));
+  //double total = Double.parseDouble(request.getParameter("total"));
  
   String minor = request.getParameter("minor");
   String  minor_guide= request.getParameter("minor_guide");
@@ -137,7 +137,7 @@
         st1.setDouble(10,percent10);
         st1.setDouble(11,percent12);
         y = st1.executeUpdate();
-        String sql2 = "insert into bgraduate values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql2 = "insert into bgraduate values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st2 = con.prepareStatement(sql2);
         st2.setString(1,roll);
         st2.setInt(2,regcredit1);
@@ -170,7 +170,7 @@
         st2.setInt(29,totalcredit6);
         st2.setDouble(30,spi6);
         st2.setDouble(31,cpi6);
-        st2.setDouble(32,total);
+        //st2.setDouble(32,total);
         z = st2.executeUpdate();
         String sql3 = "insert into bproject values(?,?,?,?,?)";
         PreparedStatement st3 = con.prepareStatement(sql3);
@@ -198,8 +198,8 @@
     {%>
     <script>
     alert("Thanks for Registration");
-    </script>
-    
+    //document.location = "passconfirm.jsp";
+    </script> 
     <%}
     con.close();
   }

@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/self.css">
+        <style>
+            .body{
+                background-color: #e7e4e4;
+            }   
+        </style>
         <script src="js/jquery.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script> 
@@ -28,23 +33,22 @@
         if(counter <= 8){
         var newRow = $("<tr>");
         var cols = "";
-
         cols += '<td>'+counter+'.</td>';
-        cols += ' <td><input type="number" name="regcredit' + counter + '" class="in"></td>';
-        cols += '<td><input type="number" name="earnedcredit' + counter + '" class="in"></td>';
-        cols += '<td><input type="number" name="totalcredit' + counter + '" class="in"></td>';
-        cols += '<td><input type="number" step="any" name="spi' + counter + '" class="in"> </td>';
-        cols += '<td><input type="number" step="any" name="cpi1' + counter + '" class="in"></td>';
+        cols += ' <td><input type="number" name="regcredit' + counter + '" class="in" value="0"></td>';
+        cols += '<td><input type="number" name="earnedcredit' + counter + '" class="in" value="0"></td>';
+        cols += '<td><input type="number" name="totalcredit' + counter + '" class="in" value="0"></td>';
+        cols += '<td><input type="number" step="any" name="spi' + counter + '" class="in" value="0"> </td>';
+        cols += '<td><input type="number" step="any" name="cpi' + counter + '" class="in" value="0"></td>';
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
         $("table.order-list").append(newRow);
-        counter++;
+        counter = counter+1;
     }
     });
     $("table.order-list").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();       
-        counter -= 1;
+        counter = counter - 1;
     });
     //for project
     $("#addrow1").on("click", function () {
@@ -115,11 +119,12 @@ function calculateGrandTotal() {
 </script>
     </head>
     <body>
-        <form action="confirm.jsp" class="form-control" method="post">
+        <div class="container-fluid">
+        <form action="confirm.jsp" class="form-control body" method="post">
             <table align="center" class="table">
                 <tr align="center">
                    <td><b><u>TPC Registration Form</u></b></td> 
-                </tr
+                </tr>
                 <tr align="center">
                    <td>(For the record of Training & Placement Cell)</td> 
                 </tr>
@@ -183,10 +188,10 @@ function calculateGrandTotal() {
                     </td>
                     <td>
                        <select name='category' class="in">
-                           <option>General</option>
-                           <option>OBC-NCL</option>
-                           <option>SC</option>
-                           <option>ST</option>
+                           <option value="general">General</option>
+                           <option value="obc">OBC-NCL</option>
+                           <option value="sc">SC</option>
+                           <option value="st">ST</option>
                         </selct>
                     </td>
                 </tr>
@@ -204,7 +209,7 @@ function calculateGrandTotal() {
                         JEE Mains Rank(All India)
                     </td>
                     <td>
-                        <input type="number" name="main_rank" class="in">   
+                        <input type="number" name="main_rank" class="in" value="0">   
                     </td>
                 </tr>
                 <tr>
@@ -220,7 +225,7 @@ function calculateGrandTotal() {
                         PIN  <input name="pin"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "6" class="in"/>
+                        maxlength = "6" class="in" value="246174"/>
                     </td>
                 </tr>
                 <tr>
@@ -228,7 +233,7 @@ function calculateGrandTotal() {
                         E-mail Id
                     </td>
                     <td>
-                        <input type="email" name="email" style='border-radius: 5px;text-align: center;'>
+                        <input type="email" name="email" class="in" value="deepak12@gmail.com">
                     </td>
                 </tr>
                 <tr>
@@ -239,7 +244,7 @@ function calculateGrandTotal() {
                         <input name="mob1"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "10" style='border-radius: 5px;text-align: center;'/>
+                        maxlength = "10" class="in" value="0"/>
                     </td>
                     <td>
                         Alternative Contact No
@@ -248,7 +253,7 @@ function calculateGrandTotal() {
                         <input name="mob2"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "10" style='border-radius: 5px;text-align: center;'/>
+                        maxlength = "10" class="in" value="0"/>
                     </td>
                 </tr>
                 <tr>
@@ -259,7 +264,7 @@ function calculateGrandTotal() {
                         <input name="account"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "11" class="in"/> &nbsp;&nbsp;(Only SBI)
+                        maxlength = "11" class="in" value="20267896548"/> &nbsp;&nbsp;(Only SBI)
                     </td>
                 </tr>
                 <tr>
@@ -268,8 +273,7 @@ function calculateGrandTotal() {
                 <tr>
                     <td><b>Secondary and Higher secondary education details:</b></td>
                 </tr>
-                <tr>
-                <table class='table'>
+                <table class="table">
                     <tr>
                         <th>Examination</th>
                         <th>Board/Institution</th>
@@ -280,14 +284,14 @@ function calculateGrandTotal() {
                     </tr>
                     <tr>
                         <td>10th</td>
-                        <td><input type='text' name='board10' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='text' name='board10' class="in"></td>
                         <td><input name="pass_year10"
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
-                            maxlength = "4" style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='obtain10' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='total10' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='percent10' style='border-radius: 5px;text-align: center;'></td>
+                            maxlength = "4" class="in" value="2013"></td>
+                        <td><input type='number' name='obtain10' class="in" value="0"></td>
+                        <td><input type='number' name='total10' class="in" value="0"></td>
+                        <td><input type='number' step="any" value="0" name='percent10' class="in"></td>
                         
                     </tr>
                     <tr>
@@ -296,10 +300,10 @@ function calculateGrandTotal() {
                         <td><input name="pass_year12"
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
-                            maxlength = "4" style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='obtain12' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' name='total12' style='border-radius: 5px;text-align: center;'></td>
-                        <td><input type='number' step="any" name='percent12' style='border-radius: 5px;text-align: center;'></td>
+                            maxlength = "4" style='border-radius: 5px;text-align: center;' value="2015"></td>
+                        <td><input type='number' name='obtain12' style='border-radius: 5px;text-align: center;' value="0"></td>
+                        <td><input type='number' name='total12' style='border-radius: 5px;text-align: center;' value="0"></td>
+                        <td><input type='number' step="any" name='percent12' value="0" style='border-radius: 5px;text-align: center;'></td>
                         
                     </tr>
                 </table>
@@ -319,11 +323,11 @@ function calculateGrandTotal() {
                     <tbody>
                         <tr>
                             <td>1.</td>
-                            <td><input type='number' name='regcredit1' style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' name='earnedcredit1' style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' name='totalcredit1' style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number'step="any" name='spi1' style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' step="any" name='cpi1' style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type="number" name='regcredit1' value="0" class="in"></td>
+                            <td><input type='number' name='earnedcredit1' value="0" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' name='totalcredit1' value="0" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' step="any" name='spi1' value="0" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' step="any" name='cpi1' value="0" style='border-radius: 5px;text-align: center;'></td>
                             <td class="col-sm-2"><a class="deleteRow"></a></td>
                         </tr>
                     </tbody>
@@ -337,7 +341,7 @@ function calculateGrandTotal() {
                 <!--<table>
                     <tr>
                         <th colspan='5'>Total</th>
-                        <td><input type='number' step="any"  name='total' class='in'><td>
+                        <td><input type='number' step="any"  name='total' class='in' value="0"><td>
                     </tr>
                 </table>-->
             <table <table id="myTable" class=" table order-list1">
@@ -404,79 +408,17 @@ function calculateGrandTotal() {
                             </td>
                         </tr>
                 </tfoot> 
-                </table>
-                <table class='table order-list3'>
-                <tr>
-                    <td><b><u>EXTRA-CURRICULAR ACTIVITY</u></b></td>
-                </tr>
-                <tr>
-                    <th>Sr. No</th>
-                    <th>Name of Activity</th>
-                    <th>Level of Participation</th>
-                    <th>Year of Participation</th>
-                </tr>
-                <tr>
-                    <td>1.</td>
-                    <td><input type="text" name="activity1" class="in"></td>
-                    <td><input type="number" name="level1" class="in"></td>
-                    <td><input type="number" name="year1" class="in"></td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td><input type="text" name="activity2" class="in"></td>
-                    <td><input type="number" name="level2" class="in"></td>
-                    <td><input type="number" name="year2" class="in"></td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td><input type="text" name="activity3" class="in"></td>
-                    <td><input type="number" name="level3" class="in"></td>
-                    <td><input type="number" name="year3" class="in"></td>
-                </tr>
-                <tr>
-                    <td><b><u>ADDITIONAL INFORMATION, IF ANY</u></b></td>
-                </tr>
-                <tr>
-                    <td>a)</td>
-                    <td><input type="text" name="additional1" class="in" style="width: 100%"></td>
-                </tr>
-                <tr>
-                    <td>b)</td>
-                    <td><input type="text" name="additional2" class="in" style="width: 100%"></td>
-                </tr>
-                <tr>
-                    <td>c)</td>
-                    <td><input type="text" name="additional3" class="in" style="width: 100%"></td>
-                </tr>
-            </table>
-            <h4 align="center"><b><u>UNDERTAKING</u></b></h4><br>
-            <p>I, <input type="text" name="" class="in"> (BT15<input type="text" maxlength="6" class="in">), student of Department of
-            <input type="text" maxlength="3" class="in">, am willing to enroll for the placement session 2017-18. I hereby declare
-            that i will strictly follow the following T & P policy laid down by the training and placement cell,NIT
-            Uttarakhand. I understand that if i fail to comply the T & P policy,I may be deregistered from placement
-            activity of the Institute or I may lose my eligibility for TA/DA support for attending placement session(s)
-            outside the campus.</p>
-            <p>
-            1. I will regularly participate in all the pre-placement and training activity organized by the institute
-            time to time.</p>
-            <p>
-            2. Having attendance less than 85%,in these activity I may be deregisteded from the placement session.</p>
-            <p>3. I will adhere to the placement policy of the institute.</p>
-            <p>4. I will attend at least two counseling sessions with institute counselor as scheduled by the traing and 
-            placement cell</p>
-            <p>5. I will maintain discipline during the training session (on/off-campus)</p>
-            <p>
-                <h5><b>NOTE : </b></h5> Any suppression of data will be viewed seriously . Update your Email id and Contact number at T & P
-                office from time to time.</p>
-
-            <br><br>
+                </table>  
+                <div class="row">
+                    <div class="col-md-6"><input type="reset" value="Clear" class="btn btn-primary"></div>
+                    <div class="col-md-6"><input type="submit" value="Submit" class="btn btn-primary"></div>
+                </div>
+                <br><br>
         <div class="container">        
-            <div class="row">
-                <div class="col-md-6"><input type="reset" value="Clear" class="btn btn-primary"></div>
-                <div class="col-md-6"><input type="submit" value="Next" class="btn btn-primary"></div>
-            </div>
+
+     
         </div>
         </form>
-        
+       </div>   
     </body>
 </html>
