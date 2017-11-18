@@ -6,26 +6,36 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@page import="java.util.*" %>
 <%
+    String reference_no = "T&P/";
+    int counter =Integer.parseInt(request.getParameter("counter"));
+    int counter1 = Integer.parseInt(request.getParameter("counter1"));
+    int counter2 = Integer.parseInt(request.getParameter("counter2"));
   String degree = request.getParameter("degree");
-  String roll = request.getParameter("roll");
-  String fname = request.getParameter("fname");
-  String lname = request.getParameter("lname");
-  String ffname = request.getParameter("ffname");
-  String flname = request.getParameter("flname");
+  String roll = request.getParameter("roll").toUpperCase();
+  /*reference no generation*/
+  Calendar now = Calendar.getInstance();
+  int year = now.get(Calendar.YEAR);
+  reference_no +=  ""+year+"/"+degree+"/"+roll.substring(4,7)+"/"+roll.substring(7);
+  
+  String fname = request.getParameter("fname").toUpperCase();
+  String lname = request.getParameter("lname").toUpperCase();
+  String ffname = request.getParameter("ffname").toUpperCase();
+  String flname = request.getParameter("flname").toUpperCase();
   String dob = request.getParameter("dob");
   String category = request.getParameter("category");
   String gender = request.getParameter("gender");
   String main_rank = request.getParameter("main_rank");
-  String address = request.getParameter("address");
+  String address = request.getParameter("address").toUpperCase();
   String pin = request.getParameter("pin");
-  String email = request.getParameter("email");
+  String email = request.getParameter("email").toLowerCase();
   String mob1 = request.getParameter("mob1");
   String mob2 = request.getParameter("mob2");
   String account = request.getParameter("account");
   
-  String board10 = request.getParameter("board10");
-  String board12 = request.getParameter("board12");
+  String board10 = request.getParameter("board10").toUpperCase();
+  String board12 = request.getParameter("board12").toUpperCase();
   String pass_year10 = request.getParameter("pass_year10");
   String pass_year12 = request.getParameter("pass_year12");
   int  obtain10 = Integer.parseInt(request.getParameter("obtain10"));
@@ -34,53 +44,40 @@
   int total12 = Integer.parseInt(request.getParameter("total12"));
   double percent10 = Double.parseDouble(request.getParameter("percent10"));
   double percent12 = Double.parseDouble(request.getParameter("percent12"));
-  
-  int regcredit1 = Integer.parseInt(request.getParameter("regcredit1"));
-  int regcredit2 = Integer.parseInt(request.getParameter("regcredit2"));
-  int regcredit3 = Integer.parseInt(request.getParameter("regcredit3"));
-  int regcredit4 = Integer.parseInt(request.getParameter("regcredit4"));
-  int regcredit5 = Integer.parseInt(request.getParameter("regcredit5"));
-  int regcredit6 = Integer.parseInt(request.getParameter("regcredit6"));
-  int earnedcredit1 = Integer.parseInt(request.getParameter("earnedcredit1"));
-  int earnedcredit2 = Integer.parseInt(request.getParameter("earnedcredit2"));
-  int earnedcredit3 = Integer.parseInt(request.getParameter("earnedcredit3"));
-  int earnedcredit4 = Integer.parseInt(request.getParameter("earnedcredit4"));
-  int earnedcredit5 = Integer.parseInt(request.getParameter("earnedcredit5"));
-  int earnedcredit6 = Integer.parseInt(request.getParameter("earnedcredit6"));
-  int totalcredit1 = Integer.parseInt(request.getParameter("totalcredit1"));
-  int totalcredit2 = Integer.parseInt(request.getParameter("totalcredit2"));
-  int totalcredit3 = Integer.parseInt(request.getParameter("totalcredit2"));
-  int totalcredit4 = Integer.parseInt(request.getParameter("totalcredit4"));
-  int totalcredit5 = Integer.parseInt(request.getParameter("totalcredit5"));
-  int totalcredit6 = Integer.parseInt(request.getParameter("totalcredit6"));
-  double spi1 = Double.parseDouble(request.getParameter("spi1"));
-  double spi2 = Double.parseDouble(request.getParameter("spi2"));
-  double spi3 = Double.parseDouble(request.getParameter("spi3"));
-  double spi4 = Double.parseDouble(request.getParameter("spi4"));
-  double spi5 = Double.parseDouble(request.getParameter("spi5"));
-  double spi6 = Double.parseDouble(request.getParameter("spi6"));
-  double cpi1 = Double.parseDouble(request.getParameter("cpi1"));
-  double cpi2 = Double.parseDouble(request.getParameter("cpi2"));
-  double cpi3 = Double.parseDouble(request.getParameter("cpi3"));
-  double cpi4 = Double.parseDouble(request.getParameter("cpi4"));
-  double cpi5 = Double.parseDouble(request.getParameter("cpi5"));
-  double cpi6 = Double.parseDouble(request.getParameter("cpi6"));
-  //double total = Double.parseDouble(request.getParameter("total"));
- 
-  String minor = request.getParameter("minor");
-  String  minor_guide= request.getParameter("minor_guide");
-  String major = request.getParameter("major");
-  String major_guide = request.getParameter("major_guide");
-  
-  String company1 = request.getParameter("company1");
-  String company2 = request.getParameter("company2");
-  String company3 = request.getParameter("company3");
-  String start1 = request.getParameter("start1");
-  String start2 = request.getParameter("start2");
-  String start3 = request.getParameter("start3");
-  String end1 = request.getParameter("end1");
-  String end2 = request.getParameter("end2");
-  String end3 = request.getParameter("end3");
+  int regcredit[] = new int[counter];
+  int earnedcredit[] = new int[counter];
+  int totalcredit[] = new int[counter]; 
+  double spi[] = new double[counter];
+  double cpi[] = new double[counter];
+  for(int i = 1 ; i <counter ;i++)
+  {
+      regcredit[i] = Integer.parseInt(request.getParameter("regcredit"+i));
+      earnedcredit[i] = Integer.parseInt(request.getParameter("earnedcredit"+i));
+      totalcredit[i] = Integer.parseInt(request.getParameter("totalcredit"+i));
+      spi[i] = Double.parseDouble(request.getParameter("spi"+i));
+      cpi[i] = Double.parseDouble(request.getParameter("cpi"+i));
+  }
+  double total = cpi[counter-1];
+  String type[] = new String[counter1];
+  String title[] = new String[counter1];
+  String guide[] = new String[counter1];
+  String grade[] = new String[counter1];
+   for(int i = 1 ; i <counter1 ;i++)
+  {
+      type[i] = request.getParameter("type"+i);
+      title[i] = request.getParameter("title"+i).toUpperCase();
+      guide[i] = request.getParameter("guide"+i).toUpperCase();
+      grade[i] = request.getParameter("grade"+i);
+  }
+  String company[] = new String[counter2];
+  String start[] = new String[counter2];
+  String end[] = new String[counter2];
+  for(int i = 1 ; i <counter2 ;i++)
+  {
+      company[i] = request.getParameter("company"+i).toUpperCase();
+      start[i] = request.getParameter("start"+i);
+      end[i] = request.getParameter("end"+i);
+  }
   int x=-1,y=-1,z=-1,w=-1,u=-1;
   try
   {
@@ -137,61 +134,77 @@
         st1.setDouble(10,percent10);
         st1.setDouble(11,percent12);
         y = st1.executeUpdate();
-        String sql2 = "insert into bgraduate values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql2 = "insert into bgraduate(roll";
+        for(int i = 1 ; i < counter; i++)
+        {
+        sql2 += ",regcredit"+i+",earnedcredit"+i+",totalcredit"+i+",spi"+i+",cpi"+i+"";
+        }
+        sql2 += ",total) values(?";
+        for(int i = 1 ; i < counter; i++)
+        {
+        sql2 += ",?,?,?,?,?";
+        }
+        sql2 += ",?)";
+        //out.println(sql2);
         PreparedStatement st2 = con.prepareStatement(sql2);
         st2.setString(1,roll);
-        st2.setInt(2,regcredit1);
-        st2.setInt(3,earnedcredit1);
-        st2.setInt(4,totalcredit1);
-        st2.setDouble(5,spi1);
-        st2.setDouble(6,cpi1);
-        st2.setInt(7,regcredit2);
-        st2.setInt(8,earnedcredit2);
-        st2.setInt(9,totalcredit2);
-        st2.setDouble(10,spi2);
-        st2.setDouble(11,cpi2);
-        st2.setInt(12,regcredit3);
-        st2.setInt(13,earnedcredit3);
-        st2.setInt(14,totalcredit3);
-        st2.setDouble(15,spi3);
-        st2.setDouble(16,cpi3);
-        st2.setInt(17,regcredit4);
-        st2.setInt(18,earnedcredit4);
-        st2.setInt(19,totalcredit4);
-        st2.setDouble(20,spi4);
-        st2.setDouble(21,cpi4);
-        st2.setInt(22,regcredit5);
-        st2.setInt(23,earnedcredit5);
-        st2.setInt(24,totalcredit5);
-        st2.setDouble(25,spi5);
-        st2.setDouble(26,cpi5);
-        st2.setInt(27,regcredit6);
-        st2.setInt(28,earnedcredit6);
-        st2.setInt(29,totalcredit6);
-        st2.setDouble(30,spi6);
-        st2.setDouble(31,cpi6);
-        //st2.setDouble(32,total);
+        int count = 2;
+        for(int i = 1 ; i < counter; i++)
+        {
+        st2.setInt(count++,regcredit[i]);
+        st2.setInt(count++,earnedcredit[i]);
+        st2.setInt(count++,totalcredit[i]);
+        st2.setDouble(count++,spi[i]);
+        st2.setDouble(count++,cpi[i]);
+        }
+        st2.setDouble(count,total);
         z = st2.executeUpdate();
-        String sql3 = "insert into bproject values(?,?,?,?,?)";
+
+        //st2.setDouble(32,total);
+        String sql3 = "insert into bproject(roll";
+        for(int i = 1 ; i < counter1; i++)
+        {
+        sql3 += ",type"+i+",title"+i+",guide"+i+",grade"+i+"";
+        }
+        sql3 += ") values(?";
+        for(int i = 1 ; i < counter1; i++)
+        {
+        sql3 += ",?,?,?,?";
+        }
+        sql3 += ")";
+        //out.println(sql3);
         PreparedStatement st3 = con.prepareStatement(sql3);
-        st3.setString(1, roll);
-        st3.setString(2, minor);
-        st3.setString(3, minor_guide);
-        st3.setString(4, major);
-        st3.setString(5, major_guide);
+        st3.setString(1,roll);
+        int count1 = 2;
+        for(int i = 1 ; i < counter1; i++)
+        {
+        st3.setString(count1++,type[i]);
+        st3.setString(count1++,title[i]);
+        st3.setString(count1++,guide[i]);
+        st3.setString(count1++,grade[i]);
+        }
         w = st3.executeUpdate();
-        String sql4 = "insert into btraining values(?,?,?,?,?,?,?,?,?,?)";
+        String sql4 = "insert into btraining(roll";
+        for(int i = 1 ; i < counter2; i++)
+        {
+        sql4 += ",company"+i+",start"+i+",end"+i+"";
+        }
+        sql4 += ") values(?";
+        for(int i = 1 ; i < counter2; i++)
+        {
+        sql4 += ",?,?,?";
+        }
+        sql4 += ")";
+        //out.println(sql4);
         PreparedStatement st4 = con.prepareStatement(sql4);
         st4.setString(1,roll);
-        st4.setString(2,company1);
-        st4.setString(3,start1);
-        st4.setString(4,end1);
-        st4.setString(5,company2);
-        st4.setString(6,start2);
-        st4.setString(7,end2);
-        st4.setString(8,company3);
-        st4.setString(9,start3);
-        st4.setString(10,end3);
+        int count2 = 2;
+        for(int i = 1 ; i < counter2; i++)
+        {
+        st4.setString(count2++,company[i]);
+        st4.setString(count2++,start[i]);
+        st4.setString(count2++,end[i]);
+        }
         u = st4.executeUpdate();
     }
     if(x>0&&y>0&&z>0&&w>0&&u>0)
@@ -224,13 +237,27 @@
     </head>
     <body>
        <body>
-           <form action="passconfirm.jsp" method="post">
+       <body>
+           <form action="passconfirm.jsp" method="post" onsubmit="return validate()">
             <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 align="center">Thanks for Registration</h3>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 align="center">Reference No : <%=reference_no%></h6>
+                    </div>
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-md-12">
                         <h3 align="center">Create a password</h3>
                     </div>
                     <div>
+                        <input type="hidden" name="reference_no" value=<%=reference_no%>>
                         <input type="hidden" name="roll" value=<%=roll%>>
                     </div>
                 </div>
@@ -265,6 +292,15 @@
                 } else 
                   $('#message').html('Not Matching').css('color', 'red');
                 });
+                function validate()
+                {
+                    var isvalid = false;
+                    var pass1  = document.getElementById("pass1").value;
+                    var pass2  = document.getElementById("pass2").value;
+                    if(pass1==pass2)
+                        isvalid = true;
+                    return isvalid;
+                }
         </script>
     </body>
 </html>

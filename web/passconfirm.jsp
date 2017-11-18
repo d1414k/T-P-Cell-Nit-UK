@@ -10,16 +10,18 @@
 String pass1 = request.getParameter("pass1");
 String pass2 = request.getParameter("pass2");
 String roll = request.getParameter("roll");
-byte[]   bytesEncoded = Base64.encodeBase64(roll.getBytes());//encoding part
+String reference_no = request.getParameter("reference_no");
+byte[]   bytesEncoded = Base64.encodeBase64(pass1.getBytes());//encoding part
 String encoded_pass = new String(bytesEncoded);
 try
 {
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp","root","");
-    String str = "insert into buser values(?,?)";
+    String str = "insert into buser(reference_no,roll,password) values(?,?,?)";
     PreparedStatement stmt = con.prepareStatement(str);
-    stmt.setString(1,roll);
-    stmt.setString(2, encoded_pass);
+    stmt.setString(1,reference_no);
+    stmt.setString(2,roll);
+    stmt.setString(3,encoded_pass);
     int m = stmt.executeUpdate();
     if(m > 0)
     {%>
@@ -40,7 +42,7 @@ try
     }
     catch(Exception e)
     {
-    //out.println("problem : "+e);
+    out.println("problem : "+e);
     }
 %>
 

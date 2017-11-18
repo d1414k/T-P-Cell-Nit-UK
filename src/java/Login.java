@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String roll = request.getParameter("roll");
+            String roll = request.getParameter("roll").toUpperCase();
             String pass = request.getParameter("pass");
             byte[] valueDecoded= Base64.encodeBase64(pass.getBytes());//decoding part
             String encoded_pass=new String(valueDecoded);
@@ -52,11 +52,13 @@ public class Login extends HttpServlet {
                     HttpSession sess = request.getSession();
                     sess.setAttribute("roll", roll);
                     out.println("<script>");
+                    //out.println("setTimeout(function() {document.location = 'student.jsp';}, 1000000000000)");
                     out.println("document.location='student.jsp'");
                     out.println("</script>");
                 }
                 else
                 {
+                    out.println(encoded_pass);
                     out.println("<script>");
                     out.println("alert('Either Roll No. or Password is Incorrect.')");
                     out.println("document.location='index.jsp'");

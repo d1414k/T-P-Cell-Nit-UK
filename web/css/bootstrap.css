@@ -5860,7 +5860,7 @@ button.close {
   }
 }
 
-@supports ((-webkit-transform: translate3d(0, 0, 0)) or (transform: translate3d(0, 0, 0))) {
+@supports ((-webkit-transform:translate3d(0, 0, 0)) or (transform: translate3d(0, 0, 0))) {
   .carousel-item {
     -webkit-transition: -webkit-transform 0.6s ease-in-out;
     transition: -webkit-transform 0.6s ease-in-out;

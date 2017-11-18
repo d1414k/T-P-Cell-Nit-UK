@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,7 +63,10 @@ public class companyReg extends HttpServlet {
             String p2 = request.getParameter("p2");
             String job_profile = request.getParameter("job_profile");
             String last_date = request.getParameter("last_date");
-            int x=-1;
+            int percent10 = Integer.parseInt(th10);
+            int percent12 = Integer.parseInt(th12);
+            double cgpa1 = Double.parseDouble(cgpa);
+            int x=-1,y = -1;
             try
                 {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -85,8 +89,19 @@ public class companyReg extends HttpServlet {
                 x = stmt.executeUpdate();
                 if(x != -1)
                     {
-                        out.println("Welcome");
+                        //out.println("Welcome");
+                        String sql = "select bgeneral.roll,bgeneral.fname,bgeneral.lname,bgeneral.mob1,bgeneral.email from bschool,bgraduate,bgeneral where (bschool.percent10 >= ? and bschool.percent12 >= ?) and bgraduate.total >= ? and bschool.roll = bgraduate.roll and bschool.roll = bgeneral.roll";
+                        PreparedStatement stmt1 = con.prepareStatement(sql);
+                        stmt1.setDouble(1,percent10);
+                        stmt1.setDouble(2,percent12);
+                        stmt1.setDouble(3,cgpa1);
+                        ResultSet rs1 =  stmt1.executeQuery();
+                        HttpSession sess = request.getSession();
+                        sess.setAttribute("rs",rs1);
+                        response.sendRedirect("selectedList.jsp");
                     }
+                else
+                    response.sendRedirect("admin.jsp");
                }
             catch(Exception e)
             {

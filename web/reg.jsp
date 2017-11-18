@@ -15,11 +15,6 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/self.css">
-        <style>
-            .body{
-                background-color: #e7e4e4;
-            }   
-        </style>
         <script src="js/jquery.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script> 
@@ -34,21 +29,23 @@
         var newRow = $("<tr>");
         var cols = "";
         cols += '<td>'+counter+'.</td>';
-        cols += ' <td><input type="number" name="regcredit' + counter + '" class="in" value="0"></td>';
-        cols += '<td><input type="number" name="earnedcredit' + counter + '" class="in" value="0"></td>';
-        cols += '<td><input type="number" name="totalcredit' + counter + '" class="in" value="0"></td>';
-        cols += '<td><input type="number" step="any" name="spi' + counter + '" class="in" value="0"> </td>';
-        cols += '<td><input type="number" step="any" name="cpi' + counter + '" class="in" value="0"></td>';
+        cols += ' <td><input type="number" name="regcredit' + counter + '" class="in" required="required"></td>';
+        cols += '<td><input type="number" name="earnedcredit' + counter + '" class="in" required="required"></td>';
+        cols += '<td><input type="number" name="totalcredit' + counter + '" class="in" required="required"></td>';
+        cols += '<td><input type="number" step="any" name="spi' + counter + '" class="in" required="required"> </td>';
+        cols += '<td><input type="number" step="any" name="cpi' + counter + '" class="in" required="required"></td>';
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
         $("table.order-list").append(newRow);
         counter = counter+1;
+        document.getElementById("count").value = counter;
     }
     });
     $("table.order-list").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();       
         counter = counter - 1;
+        document.getElementById("count").value = counter;
     });
     //for project
     $("#addrow1").on("click", function () {
@@ -75,11 +72,13 @@
         newRow.append(cols);
         $("table.order-list1").append(newRow);
         counter1++;
+        document.getElementById("count1").value = counter1;
     });
 
     $("table.order-list1").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();       
         counter1 -= 1;
+        document.getElementById("count1").value = counter1;
     });
     //for training
     $("#addrow2").on("click", function () {
@@ -93,16 +92,16 @@
         newRow.append(cols);
         $("table.order-list2").append(newRow);
         counter2++;
+        document.getElementById("count2").value = counter2;
     });
 
     $("table.order-list2").on("click", ".ibtnDel", function (event) {
         $(this).closest("tr").remove();       
         counter2 -= 1;
+        document.getElementById("count2").value = counter2;
     });
 
 });
-
-
 
 function calculateRow(row) {
     var price = +row.find('input[name^="price"]').val();
@@ -120,8 +119,8 @@ function calculateGrandTotal() {
     </head>
     <body>
         <div class="container-fluid">
-        <form action="confirm.jsp" class="form-control body" method="post">
-            <table align="center" class="table">
+        <form action="confirm.jsp" class="form-control jumbotron-fluid jumbotron" method="post">
+            <table align="center" class="table table-inverse" style="top:-50px; position:relative">
                 <tr align="center">
                    <td><b><u>TPC Registration Form</u></b></td> 
                 </tr>
@@ -129,27 +128,25 @@ function calculateGrandTotal() {
                    <td>(For the record of Training & Placement Cell)</td> 
                 </tr>
             </table>
-            <table align="center" class="table">
+            <table align="center" class="table table-responsive" style="top:-25px; position:relative">
                 <tr>
                    <td>Degree</td>
                    <td>
                        <select name="degree" style='border-radius: 5px;text-align: center;'>
-                           <option value="b">B.Tech</option>
-                           <option value="m">M.Tech</option>
-                           <option value="p">Ph.D</option>
+                           <option value="BT">B.Tech</option>
+                           <option value="MT">M.Tech</option>
+                           <option value="PD">Ph.D</option>
                        </select>
                    </td>
-               
-                
                     <td>
                         Roll No
                     </td>
                     <td>
                         <!--<input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" pattern="(BT/MT/bt/mt)+[0-9]+[0-9]+(cse/civ/mec/eee/ece/CSE/CIV/MEC/EEE/ECE)+[0-9]+[0-9]+[0-9]" maxlength="10" style='border-radius: 5px;text-align: center;'> -->
-                        <input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" class="in" required="true">
+                        <input type="text" name="roll" placeholder="Roll No Ex : BT15CSE059" class="in" required="required">
                     </td>
                 </tr>
-                <tr>
+                <tr class="table-info">
                     <td><b><u>General</u></b></td>
                 </tr>
                 <tr>
@@ -157,10 +154,10 @@ function calculateGrandTotal() {
                         Name
                     </td>
                     <td>
-                        <input type="text" name="fname" placeholder="First Name" class="in">
+                        <input type="text" name="fname" placeholder="First Name" class="in" required="required">
                     </td>
                     <td>
-                        <input type="text" name="lname" placeholder="Last Name" class="in">
+                        <input type="text" name="lname" placeholder="Last Name" class="in" required="required">
                     </td>
                 </tr>
                 <tr>
@@ -168,7 +165,7 @@ function calculateGrandTotal() {
                         Father's Name
                     </td>
                     <td>
-                        <input type="text" name="ffname" placeholder="First Name" class="in">
+                        <input type="text" name="ffname" placeholder="First Name" class="in" required="required">
                     </td>
                     <td>
                         <input type="text" name="flname" placeholder="Last Name" class="in">
@@ -179,7 +176,7 @@ function calculateGrandTotal() {
                         Date Of Birth
                     </td>
                     <td>
-                        <input type='date' name='dob' class="in">
+                        <input type='date' name='dob' class="in" required="required">
                     </td>
                 </tr>
                 <tr>
@@ -188,6 +185,7 @@ function calculateGrandTotal() {
                     </td>
                     <td>
                        <select name='category' class="in">
+                           <option value="-1">--Select--</option>
                            <option value="general">General</option>
                            <option value="obc">OBC-NCL</option>
                            <option value="sc">SC</option>
@@ -209,7 +207,7 @@ function calculateGrandTotal() {
                         JEE Mains Rank(All India)
                     </td>
                     <td>
-                        <input type="number" name="main_rank" class="in" value="0">   
+                        <input type="number" name="main_rank" class="in" required="required">   
                     </td>
                 </tr>
                 <tr>
@@ -225,7 +223,7 @@ function calculateGrandTotal() {
                         PIN  <input name="pin"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "6" class="in" value="246174"/>
+                        maxlength = "6" class="in" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -233,7 +231,7 @@ function calculateGrandTotal() {
                         E-mail Id
                     </td>
                     <td>
-                        <input type="email" name="email" class="in" value="deepak12@gmail.com">
+                        <input type="email" name="email" class="in" required="required">
                     </td>
                 </tr>
                 <tr>
@@ -244,7 +242,7 @@ function calculateGrandTotal() {
                         <input name="mob1"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "10" class="in" value="0"/>
+                        maxlength = "10" class="in" required="required"/>
                     </td>
                     <td>
                         Alternative Contact No
@@ -253,7 +251,7 @@ function calculateGrandTotal() {
                         <input name="mob2"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "10" class="in" value="0"/>
+                        maxlength = "10" class="in" required="required"/>
                     </td>
                 </tr>
                 <tr>
@@ -264,16 +262,17 @@ function calculateGrandTotal() {
                         <input name="account"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                         type = "number"
-                        maxlength = "11" class="in" value="20267896548"/> &nbsp;&nbsp;(Only SBI)
+                        maxlength = "11" class="in" required="required"/> &nbsp;&nbsp;(Only SBI)
                     </td>
                 </tr>
-                <tr>
+                <tr class="table-info">
                     <td><b><u>EDUCATIONAL QUALIFICATION</u></b></td>
                 </tr>
-                <tr>
+                <tr class="table-active">
                     <td><b>Secondary and Higher secondary education details:</b></td>
                 </tr>
-                <table class="table">
+            </table>
+                <table class="table table-responsive">
                     <tr>
                         <th>Examination</th>
                         <th>Board/Institution</th>
@@ -284,32 +283,37 @@ function calculateGrandTotal() {
                     </tr>
                     <tr>
                         <td>10th</td>
-                        <td><input type='text' name='board10' class="in"></td>
+                        <td><input type='text' name='board10' class="in" required="required"></td>
                         <td><input name="pass_year10"
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
-                            maxlength = "4" class="in" value="2013"></td>
-                        <td><input type='number' name='obtain10' class="in" value="0"></td>
-                        <td><input type='number' name='total10' class="in" value="0"></td>
-                        <td><input type='number' step="any" value="0" name='percent10' class="in"></td>
+                            maxlength = "4" class="in" required="required"></td>
+                        <td><input type='number' name='obtain10' class="in" required="required"></td>
+                        <td><input type='number' name='total10' class="in" required="required"></td>
+                        <td><input type='number' step="any" name='percent10' class="in" required="required"></td>
                         
                     </tr>
                     <tr>
                         <td>12th</td>
-                        <td><input type='text' name='board12' style='border-radius: 5px;text-align: center;'></td>
+                        <td><input type='text' name='board12' style='border-radius: 5px;text-align: center;' required="required"></td>
                         <td><input name="pass_year12"
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
-                            maxlength = "4" style='border-radius: 5px;text-align: center;' value="2015"></td>
-                        <td><input type='number' name='obtain12' style='border-radius: 5px;text-align: center;' value="0"></td>
-                        <td><input type='number' name='total12' style='border-radius: 5px;text-align: center;' value="0"></td>
-                        <td><input type='number' step="any" name='percent12' value="0" style='border-radius: 5px;text-align: center;'></td>
+                            maxlength = "4" style='border-radius: 5px;text-align: center;' required="required"></td>
+                        <td><input type='number' name='obtain12' style='border-radius: 5px;text-align: center;' required="required"></td>
+                        <td><input type='number' name='total12' style='border-radius: 5px;text-align: center;' required="required"></td>
+                        <td><input type='number' step="any" name='percent12' required="required"style='border-radius: 5px;text-align: center;'></td>
                         
                     </tr>
                 </table>
                 </tr>
+                <input type="hidden" id="count" name="counter" value="2">
+                <input type="hidden" id="count1" name="counter1" value="2">
+                <input type="hidden" id="count2" name="counter2" value="2">
+                <div class="table-active">
                 <b>Under Graduation</b>
-               <table id="myTable" class=" table order-list">
+                </div>
+               <table id="myTable" class=" table order-list table-responsive">
                     <thead>
                         <tr>
                             <th>Semester</th>
@@ -323,11 +327,11 @@ function calculateGrandTotal() {
                     <tbody>
                         <tr>
                             <td>1.</td>
-                            <td><input type="number" name='regcredit1' value="0" class="in"></td>
-                            <td><input type='number' name='earnedcredit1' value="0" style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' name='totalcredit1' value="0" style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' step="any" name='spi1' value="0" style='border-radius: 5px;text-align: center;'></td>
-                            <td><input type='number' step="any" name='cpi1' value="0" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type="number" name='regcredit1' required="required" class="in"></td>
+                            <td><input type='number' name='earnedcredit1' required="required" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' name='totalcredit1' required="required" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' step="any" name='spi1' required="required" style='border-radius: 5px;text-align: center;'></td>
+                            <td><input type='number' step="any" name='cpi1' required="required" style='border-radius: 5px;text-align: center;'></td>
                             <td class="col-sm-2"><a class="deleteRow"></a></td>
                         </tr>
                     </tbody>
@@ -344,8 +348,11 @@ function calculateGrandTotal() {
                         <td><input type='number' step="any"  name='total' class='in' value="0"><td>
                     </tr>
                 </table>-->
-            <table <table id="myTable" class=" table order-list1">
-                <tr><td><b>Projects</b></td></tr>
+            <table <table id="myTable" class=" table order-list1 table-responsive">
+                <div class="table-info">
+                <b>Projects</b>
+                </div>
+               
                 <tr>
                     <th>Type</th>
                     <th>Title</th>
@@ -374,16 +381,16 @@ function calculateGrandTotal() {
                 </tr>
                 <tfoot>
                         <tr>
-                            <td colspan="12" style="text-align: right;">
+                            <td colspan="1" style="text-align: right;">
                                 <input type="button" class="btn btn-primary " id="addrow1" value="Add Project" />
                             </td>
                         </tr>
                 </tfoot> 
             </table>
-            <table class="table order-list2">
-                <tr>
-                    <td><b><u>PRACTICAL TRAINING</u></b></td>
-                </tr>
+            <table class="table order-list2 table-responsive">
+                <div class="table-info">
+                    <b><u>PRACTICAL TRAINING</u></b>
+                </div>
                 <!--<tr>
                     <td>Have you under gone practical training</td>
                     <td><input type="radio" name="practical" value="yes" checked="true">Yes</td>
@@ -403,21 +410,18 @@ function calculateGrandTotal() {
                 </tr>
                 <tfoot>
                         <tr>
-                            <td colspan="12" style="text-align: right;">
+                            <td colspan="1">
                                 <input type="button" class="btn btn-primary " id="addrow2" value="Add Training" />
                             </td>
                         </tr>
                 </tfoot> 
                 </table>  
+                <br><br>
                 <div class="row">
-                    <div class="col-md-6"><input type="reset" value="Clear" class="btn btn-primary"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"><input type="reset" value="Clear" class="btn btn-primary"></div>
                     <div class="col-md-6"><input type="submit" value="Submit" class="btn btn-primary"></div>
                 </div>
-                <br><br>
-        <div class="container">        
-
-     
-        </div>
         </form>
        </div>   
     </body>

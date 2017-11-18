@@ -1,16 +1,9 @@
-
-<%-- 
-    Document   : student
-    Created on : 7 Oct, 2017, 12:58:07 PM
-    Author     : deepak
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
-if(session.getAttribute("roll")==null)
+if(session.getAttribute("uname")==null)
 {
     response.sendRedirect("index.jsp");
 }
@@ -24,7 +17,7 @@ else
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Student Dashboard</title>
+  <title>Admin Dashboard</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -38,7 +31,9 @@ else
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="student.jsp"><%=session.getAttribute("roll")%></a>
+    <a class="navbar-brand" href="student.jsp"><%=session.getAttribute("uname")%></a>
+    
+    
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -52,21 +47,27 @@ else
           </a>
            </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="student.jsp">
+          <a class="nav-link" href="admin.jsp">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit Profile">
-          <a class="nav-link" href="stu-edit-profile.jsp">
+          <a class="nav-link" href="admin.jsp">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Edit Profile</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" >
-          <a class="nav-link" href="stu-update-pass.jsp">
+          <a class="nav-link" href="admin-update-pass.jsp">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Update Password</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+          <a class="nav-link" href="rec-form.jsp">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">Add Recruiter</span>
           </a>
         </li>
       </ul>
@@ -122,88 +123,29 @@ else
     </div>
   </nav>
   <div class="content-wrapper">
-    <div class="container-fluid">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="student.jsp">Student Dashboard</a>
-        </li>
-      </ol>
-      <div class="row">
-        <div class="col-12">
-            <div class="jumbotron">
-                <h1 style="margin: 0rem;">Deepak</h1>
-                <p style="margin: 0rem;">B.Tech Computer Science & Engineering</p>
-                <p style="margin: 0rem;">Email: guptaprakhar272@gmail.com</p>
-                <p style="margin: 0rem;">Phone no: 941059279</p>
-            </div>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col-6">
-              <div class="box-content">
-                  <h3>Educational</h3>
-              </div>
-          </div>
-          <div class="col-6">
-              <div style="border: 1px #000 solid; border-radius: 0.5rem; padding: 1rem;">
-                  <h3>Training and Internships</h3>
-              </div>
-          </div>
-      </div>
-    </div>
-    <% }
-    %>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © NIT UK</small>
-        </div>
-      </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <form action="Logout" method="post">
-            <input type="submit" value="Logout" class="btn btn-primary">    
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
-  </div>
-</body>
-
-</html>
+      
+      <%
+          String uname = session.getAttribute("uname").toString();
+          String name="",email="";
+            try
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tp","root","");
+                String str = "select * from admin where uname = ?";
+                PreparedStatement stmt = con.prepareStatement(str);
+                stmt.setString(1,uname);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.next())
+                {
+			name = rs.getString(2);
+                        email = rs.getString(5); 
+                }
+                con.close();
+            }
+            catch(Exception e)
+            {
+                out.println(e);
+            }
+      
+      %>
+     <div class="container-fluid">
