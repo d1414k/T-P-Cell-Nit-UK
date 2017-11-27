@@ -123,11 +123,6 @@
                     <%=cgpa%>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="box-content jumbotron">
-            <h3>Training and Internships</h3>
             <div class="row">
                 <div class="col-3"><h6>Summer Training</h6></div>
                 <div class="col-3">
@@ -143,6 +138,16 @@
             <div class="row">
                 <div class="col-3"><h6>Internship</h6></div>
             </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="box-content jumbotron">
+           <h3>Shortlisted for </h3> 
+           <ol>
+               <li><a href="">SmartPix</a></li>
+               <li><a href="">IBM</a></li>
+               <li><a href="">Yodlee</a></li>
+           </ol>
         </div>
     </div>
 </div>

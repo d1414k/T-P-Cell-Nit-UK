@@ -53,6 +53,22 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script>
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+              return true;
+            }
+            };
+
+            $('#cmd').click(function () {
+            doc.fromHTML($('#content').html(), 15, 15, {
+              'width': 170,
+                  'elementHandlers': specialElementHandlers
+            });
+            doc.save('shortlistStudent.pdf');
+});  
+    </script>
   </div>
 </body>
 

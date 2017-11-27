@@ -1,9 +1,3 @@
-<%-- 
-    Document   : reg.jsp
-    Created on : 2 Oct, 2017, 11:19:36 AM
-    Author     : deepak
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -252,7 +246,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr id="bgrow1">
                             <td>1.</td>
                             <td><input type="number" name='regcredit1' id="regcredit1" required="required" class="in"
                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -274,8 +268,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="12" style="text-align: right;">
+                            <td colspan="6" style="text-align: left;">
                                 <input type="button" class="btn btn-primary " id="addrow" value="Add Semester"/>
+                            </td>
+                            <td colspan="12" style="text-align: right;">
+                                <input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete">
                             </td>
                         </tr>
                     </tfoot> 
@@ -372,7 +369,7 @@
             var counter2 = 2;
             $("#addrow").on("click", function () {
                 if(counter <= 8){
-                var newRow = $("<tr>");
+                var newRow = $("<tr id=bgrow"+counter+">");
                 var cols = "";
                 cols += '<td>'+counter+'.</td>';
                 cols += ' <td><input type="number" name="regcredit' + counter + '" id="regcredit' + counter + '" class="in" required="required"' +
@@ -386,7 +383,7 @@
                 cols += '<td><input type="number" readonly="true" step=".01" name="cpi' + counter + '" id="cpi' + counter + '" class="in" required="required"' +
                     'oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" min="0" max="10"></td>';
 
-                cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger" value="Delete"></td>';
+                cols += '<td><input type="button" class="btn btn-md btn-warning" value="Reset" onclick="reset1()"></td>';
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
                 counter = counter+1;
@@ -395,8 +392,10 @@
             }
             });
             $("table.order-list").on("click", ".ibtnDel", function (event) {
-                $(this).closest("tr").remove();       
+                if(counter>1){
+                $("#bgrow"+(counter-1)).html('');       
                 counter = counter - 1;
+            }
                 document.getElementById("count").value = counter;
             });
             //for project

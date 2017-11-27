@@ -14,10 +14,23 @@
     int counter2 = Integer.parseInt(request.getParameter("counter2"));
   String degree = request.getParameter("degree");
   String roll = request.getParameter("roll").toUpperCase();
+  String branch = roll.substring(4,7).toUpperCase();
   /*reference no generation*/
   Calendar now = Calendar.getInstance();
   int year = now.get(Calendar.YEAR);
-  reference_no +=  ""+year+"/"+degree+"/"+roll.substring(4,7)+"/"+roll.substring(7);
+  reference_no +=  ""+year+"/"+degree+"/"+branch+"/"+roll.substring(7);
+  
+  int deptid=0;
+  if(branch.equals("CSE"))
+      deptid = 1;
+  else if(branch.equals("ECE"))
+      deptid = 2;
+  else if(branch.equals("MEC"))
+      deptid = 3;
+  else if(branch.equals("CIV"))
+      deptid = 4;
+  else if(branch.equals("EEE"))
+      deptid = 5;
   
   String fname = request.getParameter("fname").toUpperCase();
   String lname = request.getParameter("lname").toUpperCase();
@@ -102,7 +115,7 @@
     }
     else
     {
-        String sql = "insert into bgeneral values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into bgeneral values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, roll);
         st.setString(2,fname );
@@ -119,6 +132,7 @@
         st.setString(13,mob1);
         st.setString(14,mob2);
         st.setString(15,account);
+        st.setInt(16,deptid);
         x = st.executeUpdate();
         String sql1 = "insert into bschool values(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement st1 = con.prepareStatement(sql1);

@@ -3,7 +3,6 @@
     Created on : 24 Sep, 2017, 1:26:13 PM
     Author     : deepak
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 <!DOCTYPE html>
@@ -166,9 +165,9 @@ body {font-family: Verdana,sans-serif;margin:0}
                     <h5>Upcomming Events</h5>
                 </div>
                 <div class="box-content" id="x" style="background-color: #fff">
-                    <marquee direction = "up" onmouseover="this.stop();" onmouseout="this.start();"><p>Smartprix</p>
-                        <p>Wipro</p>
-                        <p>India Mart</p>
+                    <marquee direction = "up" onmouseover="this.stop();" onmouseout="this.start();"><p><a href="">Smartprix</a></p>
+                        <p><a href="">Wipro</a></p>
+                        <p><a href="">India Mart</a></p>
                     </marquee>
                 </div>
             </div>
@@ -178,10 +177,10 @@ body {font-family: Verdana,sans-serif;margin:0}
                     <h5>Recent Events</h5>
                 </div>
                 <div class="box-content" id="x" style="background-color: #fff">
-                    <marquee direction = "up" onmouseover="this.stop();" onmouseout="this.start();"><p>Envestnet Yodlee</p>
-                    <p>Directi</p>
-                    <p>IBM</p>
-                    <p>Capgemini India</p></marquee>
+                    <marquee direction = "up" onmouseover="this.stop();" onmouseout="this.start();"><p><a href="">Envestnet Yodlee</a></p>
+                        <p><a href="">Directi</a></p>
+                        <p><a href="">IBM</a></p>
+                        <p><a href="">Capgemini India</a></p></marquee>
                 </div>
             </div>
         </div>
@@ -195,7 +194,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 
     <footer class="py-5 bg-dark" style="background-color: #333">
         <div class="container">
-            <p class="text-center text-white">Copyright @NITUK</p>
+            <p class="text-center text-white">Copyright © NITUK</p>
         </div>
         <!-- /.container -->
     </footer>

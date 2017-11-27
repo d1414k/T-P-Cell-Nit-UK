@@ -41,7 +41,7 @@ else
          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit Profile">
              <a class="nav-link" href="charts.html">
             <span class="navbar-brand">
-          <img class="img-fluid rounded-circle mx-auto mb-2" style="max-width:10rem;max-height:10rem;border:.5rem solid rgba(255,255,255,.2)" src="img/deepak.jpg" alt="">
+          <img class="img-fluid rounded-circle mx-auto mb-2" style="max-width:10rem;max-height:10rem;border:.5rem solid rgba(255,255,255,.2)" src="img/profile.jpg" alt="">
             </span>
           </a>
            </li>
@@ -52,7 +52,7 @@ else
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit Profile">
-          <a class="nav-link" href="stu-edit-profile.jsp">
+          <a class="nav-link" href="">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Edit Profile</span>
           </a>
